@@ -19,7 +19,7 @@ jobs:
           mkdir -p ~/.ssh/
           ssh-keyscan ${{ secrets.HOST }} >> ~/.ssh/known_hosts
           echo "Creating staging area"
-          ssh -i privkey ${{ secrets.USERNAME }}@${{ secrets.HOST }} "mkdir -p /tmp/deploy && rm -rf /tmp/deploy/*"
+          ssh -i privkey ${{ secrets.USERNAME }}@${{ secrets.HOST }} "mkdir -p /tmp/deploy && rm -rf /tmp/deploy"
           echo "Copying files via scp"
           scp -i privkey -r . ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/deploy
           echo "Deploying"
