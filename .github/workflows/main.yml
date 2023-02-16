@@ -21,7 +21,7 @@ jobs:
           echo "Creating staging area"
           ssh -i privkey ${{ secrets.USERNAME }}@${{ secrets.HOST }} "mkdir -p /tmp/deploy && rm -rf /tmp/deploy"
           echo "Copying files via scp"
-          scp -i privkey -r . ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/deploy
+          scp -i privkey -r $(pwd) ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/deploy
           echo "Deploying"
           ssh -i privkey ${{ secrets.USERNAME }}@${{ secrets.HOST }} "rm -rf /code/web && mv /tmp/deploy /code/web && rm -rf /tmp/deploy"
           echo "Deployed to the server"
